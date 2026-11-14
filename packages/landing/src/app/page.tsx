@@ -7,6 +7,7 @@ import SectionHead from '@/components/molecules/SectionHead';
 import Terminal from '@/components/molecules/Terminal';
 import {
   LuActivity,
+  LuBot,
   LuBoxes,
   LuClipboardCheck,
   LuDownload,
@@ -50,6 +51,11 @@ const FEATURES: Feature[] = [
     icon: LuClipboardCheck,
     title: 'Versioned, resumable storage',
     body: 'Chunked uploads with SHA-256 integrity verification, dataset versions, experiment records, and artifact provenance — all in a local workspace database.',
+  },
+  {
+    icon: LuBot,
+    title: 'MCP server',
+    body: 'neuro mcp lets agents inspect, validate, convert, and export EEG, MEG, and MRI recordings through typed tools — fully local, over stdio.',
   },
 ];
 

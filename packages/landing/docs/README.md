@@ -9,7 +9,7 @@ local filesystem.
 
 - **Getting started** — install the desktop app and use the `neuro` CLI.
 - **Concepts** — pipelines, datasets, and provenance.
-- **Guides** — task-oriented walkthroughs.
+- **Guides** — task-oriented walkthroughs and the MCP server.
 
 ## What it does
 
@@ -18,5 +18,6 @@ local filesystem.
   epoching, and more.
 - Versioned datasets, experiments, analysis runs, and artifacts with
   provenance.
-- `neuro` CLI for scripting: inspect, validate, convert, and export.
+- `neuro` CLI for scripting: inspect, validate, convert, and export — plus
+  `neuro mcp` for MCP clients.
 - Runs fully offline; data never leaves your machine.
