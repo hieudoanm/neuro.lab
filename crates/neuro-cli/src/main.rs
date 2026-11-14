@@ -1,3 +1,5 @@
+mod mcp;
+
 use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
@@ -63,6 +65,8 @@ enum Command {
         #[arg(short, long)]
         output: PathBuf,
     },
+    /// Run an MCP server over stdio JSON-RPC
+    Mcp,
 }
 
 fn print_json(value: &serde_json::Value, pretty: bool) {
@@ -87,6 +91,12 @@ fn fail(message: impl std::fmt::Display) -> ! {
 
 fn main() {
     let cli = Cli::parse();
+    if matches!(cli.command, Command::Mcp) {
+        if let Err(error) = mcp::run() {
+            fail(format!("mcp: {error}"));
+        }
+        return;
+    }
     let result = match cli.command {
         Command::InspectEeg { path, sfreq } => {
             resolve_sfreq(&path, sfreq).and_then(|rate| inspect_eeg(&path, rate))
@@ -124,6 +134,7 @@ fn main() {
             neuro_mri::dicom::dicom_to_nifti(&input, &output)
         }
         .map_err(|error| error.to_string()),
+        Command::Mcp => unreachable!("handled before dispatch"),
     };
     match result {
         Ok(value) => print_json(&value, cli.pretty),
